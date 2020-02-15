@@ -18,17 +18,17 @@ name: Publish to GitHub Pages
 on:
   push:
     branches:
-      - forestry-source
+      - master
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: EdricChan03/action-build-deploy-ghpages@v2.2.1
+    - uses: EdricChan03/action-build-deploy-ghpages@v2.3.0
       with:
         # The `github.token` is generated automatically.
-        github_token: ${{ github.token }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
 
         # You must create a GitHub Personal Access Token with at least
         # the `public_repo` and `repo_deployment` scopes. To make this
@@ -41,9 +41,6 @@ jobs:
         #
         #    https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets
         gh_pages_token: ${{ secrets.GH_PAGES_TOKEN }}
-
-        # Set the git branch to push the built Jekyll static site to.
-        # This must be `master` for User or Organization repositories.
-        # See
-        # https://help.github.com/en/github/working-with-github-pages/about-github-pages#publishing-sources-for-github-pages-sites
-        #gh_pages_branch: master
+        # Enables deployment mode. Requires Gemfile.lock to be present.
+        jekyll_build_opts: '--deployment'
+        show_bundle_log: true
