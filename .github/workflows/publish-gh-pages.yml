@@ -41,6 +41,4 @@ jobs:
         #
         #    https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets
         gh_pages_token: ${{ secrets.GH_PAGES_TOKEN }}
-        # Enables deployment mode. Requires Gemfile.lock to be present.
-        jekyll_build_opts: '--deployment'
         show_bundle_log: true
